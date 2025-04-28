@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../axiosInstance';
+import { getImageUrl } from '../../constants';
 
 function ManageTeachers() {
   const [teachers, setTeachers] = useState([]);
@@ -28,7 +29,7 @@ function ManageTeachers() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setImage(data.imageUrl);
+      setImage(getImageUrl(data.imageUrl));
     } catch (error) {
       console.error(error);
       alert('Upload ảnh thất bại!');
@@ -65,7 +66,7 @@ function ManageTeachers() {
     setEditingId(teacher._id);
     setName(teacher.name);
     setBio(teacher.bio);
-    setImage(teacher.image);
+    setImage(getImageUrl(teacher.image));
   };
 
   const handleDeleteTeacher = async (id) => {
@@ -117,7 +118,7 @@ function ManageTeachers() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {teachers.map((teacher) => (
           <div key={teacher._id} className="border rounded p-4 shadow">
-            <img src={teacher.image || '/images/default-teacher.jpg'} alt={teacher.name} className="w-full h-48 object-cover rounded mb-4" />
+            <img src={getImageUrl(teacher.image) || '/images/default-teacher.jpg'} alt={teacher.name} className="w-full h-48 object-cover rounded mb-4" />
             <h3 className="text-xl font-bold">{teacher.name}</h3>
             <p className="text-sm text-gray-600">{teacher.bio}</p>
 

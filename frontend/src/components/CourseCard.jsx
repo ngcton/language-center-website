@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../constants';
 
 function CourseCard({ course }) {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1">
       <img
-        src={course.image || '/images/default-course.jpg'}
+        src={getImageUrl(course.image) || '/images/default-course.jpg'}
         alt={course.title}
         className="w-full h-48 object-cover"
       />

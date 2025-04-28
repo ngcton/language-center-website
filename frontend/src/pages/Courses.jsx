@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../constants';
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -41,12 +42,14 @@ function Courses() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {courses.map((course) => (
+              
+
               <div
                 key={course._id}
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1"
               >
                 <img
-                  src={course.image || '/images/default-course.jpg'}
+                  src={getImageUrl(course.image) || '/images/default-course.jpg'}
                   alt={course.title}
                   className="w-full h-48 object-cover"
                 />

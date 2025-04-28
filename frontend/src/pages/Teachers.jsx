@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
+import { getImageUrl } from '../constants';
 
 function Teachers() {
   const [teachers, setTeachers] = useState([]);
@@ -42,7 +43,7 @@ function Teachers() {
             {teachers.map((teacher) => (
               <div key={teacher._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1">
                 <img
-                  src={teacher.image || '/images/default-teacher.jpg'}
+                  src={getImageUrl(teacher.image) || '/images/default-teacher.jpg'}
                   alt={teacher.name}
                   className="w-full h-64 object-cover"
                 />

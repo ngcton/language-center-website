@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../axiosInstance';
+import { getImageUrl } from '../../constants';
 
 function ManageCourses() {
   const [courses, setCourses] = useState([]);
@@ -29,7 +30,7 @@ function ManageCourses() {
       const { data } = await axiosInstance.post('/api/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setImage(data.imageUrl);
+      setImage(getImageUrl(data.imageUrl));
     } catch (error) {
       console.error(error);
       alert('Upload ảnh thất bại!');
@@ -70,7 +71,7 @@ function ManageCourses() {
     setTeacher(course.teacher);
     setStartDate(course.startDate?.substring(0, 10));
     setEndDate(course.endDate?.substring(0, 10));
-    setImage(course.image);
+    setImage(getImageUrl(course.image));
   };
 
   const handleDeleteCourse = async (id) => {
@@ -167,7 +168,7 @@ function ManageCourses() {
         {courses.map((course) => (
           <div key={course._id} className="border rounded p-4 shadow hover:shadow-lg transition">
             <img
-              src={course.image || '/images/default-course.jpg'}
+              src={getImageUrl(course.image) || '/images/default-course.jpg'}
               alt={course.title}
               className="w-full h-48 object-cover rounded mb-4"
             />
