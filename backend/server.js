@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -16,6 +17,9 @@ const app = express();
 
 // Parse body JSON
 app.use(express.json());
+
+// Allow all domain
+app.use(cors());
 
 // Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
